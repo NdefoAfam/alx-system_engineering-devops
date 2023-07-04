@@ -5,7 +5,7 @@ sudo apt-get -y install --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.4
 sudo apt-get -y install haproxy
 # the load balancer's configuration
-DOMAIN_NAME='afam20ndefo.tech'
+DOMAIN_NAME='ndefo20afam.tech'
 INIT_FILE='/etc/default/haproxy'
 CONFIG_FILE='/etc/haproxy/haproxy.cfg'
 HAPROXY_LB_CONFIG=\
@@ -13,8 +13,8 @@ HAPROXY_LB_CONFIG=\
 #--$DOMAIN_NAME-params-begin--
 backend $DOMAIN_NAME-backend
 	balance roundrobin
-	server web1 54.167.185.107 check
-	server web2 54.237.96.153 check
+	server web1 18.233.66.14 check
+	server web2 100.25.110.146 check
 
 frontend $DOMAIN_NAME-frontend
 	bind *:80
