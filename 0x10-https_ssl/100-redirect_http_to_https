@@ -34,16 +34,16 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend 202812-web
+frontend 218721-web
     	bind *:80
-    	bind *:443 ssl crt /etc/ssl/www.namestarlit.tech/www.namestarlit.tech.pem
+    	bind *:443 ssl crt /etc/letsencrypt/live/www.ndefo20afam.tech/fullchain.pem
 
     	# Redirect if HTTPS is not used
     	redirect scheme https code 301 if !{ ssl_fc }
 
-    	default_backend 202812-web_servers
+    	default_backend 218721-web_servers
 
-backend 202812-web_servers
+backend 218721-web_servers
     	balance roundrobin
     	server web-01 18.233.66.14 check
-    	server web-02 100.25.110.146:80 check
+    	server web-02 100.25.110.146 check
