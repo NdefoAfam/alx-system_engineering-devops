@@ -34,16 +34,23 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend 218721-web
+frontend ndefo20afam-frontend-http
     	bind *:80
-    	bind *:443 ssl crt /etc/ssl/www.ndefo20afam.tech/www.ndefo20afam.tech.pem
+        mode http
+	http-request set-header X-Forwarded-Proto http
+        default_backend ndefo20afam-backend
+
+frontend ndefo20afam-frontend-https
+	bind *:443 ssl crt /etc/letsencrypt/live/www.ndefo20afam.tech/privkey.pem
+	http-request set-header X-Forwarded-Proto https
+	default_backend ndefo20afam-backend
 
     	# Redirect if HTTPS is not used
     	redirect scheme https code 301 if !{ ssl_fc }
 
-    	default_backend 218721-web_servers
+    	default_backend ndefo20afam-backend
 
-backend 218721-web_servers
+backend ndefo20afam-backend
     	balance roundrobin
     	server web-01 18.233.66.14 check
     	server web-02 100.25.110.146:80 check
