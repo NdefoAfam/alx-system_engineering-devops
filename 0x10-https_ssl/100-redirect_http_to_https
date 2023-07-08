@@ -34,9 +34,10 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
+
 frontend 218721-web
     	bind *:80
-    	bind *:443 ssl crt /etc/letsencrypt/live/www.ndefo20afam.tech/fullchain.pem
+    	bind *:443 ssl crt /etc/ssl/www.ndefo20afam.tech/.pem
 
     	# Redirect if HTTPS is not used
     	redirect scheme https code 301 if !{ ssl_fc }
