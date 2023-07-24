@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
-# A Bash script that accepts one argument
-# The script run the 'whoami' command under the user passed as an argument
 
+# Check if an argument was provided
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <username>"
+  exit 1
+fi
+
+# Validate the argument as a valid username
+if ! id "$1" &>/dev/null; then
+  echo "Error: Invalid username '$1'"
+  exit 1
+fi
+
+# Run the 'whoami' command under the specified user
 sudo -u "$1" whoami
