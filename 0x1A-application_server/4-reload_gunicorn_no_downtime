@@ -1,0 +1,15 @@
+#!usr/bin/bash
+
+# Get the PID of the master Gunicorn process
+MASTER_PID=$(ps aux | grep "[g]unicorn --bind 0.0.0.0:5003" | awk '{print $2}')
+
+# Reload Gunicorn by sending a HUP signal to the master process
+kill -HUP $MASTER_PID
+
+# Wait for the workers to finish processing current requests
+sleep 5
+
+# Print status after reload
+echo "Gunicorn reloaded gracefully."
+
+
