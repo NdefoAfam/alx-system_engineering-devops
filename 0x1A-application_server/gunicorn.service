@@ -1,3 +1,8 @@
+#!usr/bin/bash
+
+#create gunicorn.service file
+sudo nano /etc/systemd/system/gunicorn.service
+
 [Unit]
 Description=Gunicorn instance to serve AirBnB_clone_v4 web app
 After=network.target
