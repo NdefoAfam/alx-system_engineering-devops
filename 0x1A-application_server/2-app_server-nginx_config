@@ -8,7 +8,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
-}
+
 
 	root /var/www/html;
 
@@ -27,10 +27,6 @@ server {
 		internal;
 	}
 
-	location /airbnb-onepage/ {
-		include proxy_params;
-                proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
-        }
 
 	location / {
 		try_files $uri $uri/ =404;
